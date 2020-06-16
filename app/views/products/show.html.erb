@@ -13,6 +13,7 @@
 					<img src="<%=img["src"]%>">
 				<%end%>
 				<%ele["variants"].each do |variant|%>
+					<p>Variant Name: <%= variant["title"] if variant["title"]!= "Default Title"%></p>
 					<p>Product Quantity: <%= variant["inventory_quantity"]%></p>
 					<p>Product Price: <%=variant["price"]%></p>
 					<%= link_to "Buy", products_product_list_path(ele["id"]) , :class=>"btn btn-primary" %>
