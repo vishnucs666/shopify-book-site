@@ -1,0 +1,18 @@
+
+<h1>CREATE PRODUCTS</h1>
+
+<%= form_tag(products_create_path, { method: :get }) do %>
+	<div>
+		<li><p>Title<%=text_field_tag (:title)%></p></li>
+		<li><p>Product_type<%=text_field_tag (:prod_type)%></p></li>
+		<li><p>Body<%=text_field_tag (:body)%></p></li>
+		<li><p>Vendor<%=text_field_tag (:vendor)%></p></li>
+		<li><p>Variant 1<%=text_field_tag (:var1)%></p></li>
+		<li><p>Price<%=text_field_tag (:price1)%></p></li>
+		<li><p>Quantity<%=text_field_tag (:qty1)%></p></li>
+		<li><p>Variant 2<%=text_field_tag (:var2)%></p></li>
+		<li><p>Price<%=text_field_tag (:price2)%></p></li>
+		<li><p>Quantity<%=text_field_tag (:qty2)%></p></li>
+	<%= submit_tag('Create Product', name:'submit')%>
+	</div>
+<%end%>

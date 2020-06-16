@@ -1,8 +1,12 @@
 class ProductsController < ApplicationController
 
 
+  def add; end
+
   def create
-    RestClient.post "https://#{ENV['SHOPIFY_API_KEY']}:#{ENV['SHOPIFY_API_PASSWORD']}@myownbookshelf.myshopify.com/admin/api/2020-04/products.json", :product=> {"title": "Burton 2020", "body": "Good snowboard!", "vendor":"Burton", "product_type":"Snowboard", "published":false}
+    RestClient.post "https://#{ENV['SHOPIFY_API_KEY']}:#{ENV['SHOPIFY_API_PASSWORD']}@myownbookshelf.myshopify.com/admin/api/2020-04/products.json",:product=> {"title": params["title"], "body": params["body"], "vendor": params["vendor"], "product_type": params["prod_type"], "published":false, "variants": [{"option1": params["var1"],"price": params["price1"],"sku": "123", "inventory_quantity": params["qty1"]}, {"option1": params["var2"],"price": params["price2"],"sku": "123", "inventory_quantity": params["qty2"] }]}
+    flash[:notice] = "Api has been successfully sent"
+    redirect_to root_path
   end
 
   def show
@@ -14,7 +18,7 @@ class ProductsController < ApplicationController
     product = RestClient.get("https://#{ENV['SHOPIFY_API_KEY']}:#{ENV['SHOPIFY_API_PASSWORD']}@myownbookshelf.myshopify.com/admin/api/2020-04/products/#{params["format"].to_i}.json")
     @product = JSON.parse(product)
   end
-  
+
   def payment
     RestClient.get("https://#{ENV['SHOPIFY_API_KEY']}:#{ENV['SHOPIFY_API_PASSWORD']}@myownbookshelf.myshopify.com/admin/api/2020-04/shopify_payments/payouts/623721858.json")
   end
