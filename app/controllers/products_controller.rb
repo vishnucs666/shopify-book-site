@@ -7,9 +7,14 @@ class ProductsController < ApplicationController
 
   def show
     products = RestClient.get("https://#{ENV['SHOPIFY_API_KEY']}:#{ENV['SHOPIFY_API_PASSWORD']}@myownbookshelf.myshopify.com/admin/api/2020-01/products.json")
-    render json: products
+    @products = JSON.parse(products)
   end
 
+  def product_list
+    product = RestClient.get("https://#{ENV['SHOPIFY_API_KEY']}:#{ENV['SHOPIFY_API_PASSWORD']}@myownbookshelf.myshopify.com/admin/api/2020-04/products/#{params["format"].to_i}.json")
+    @product = JSON.parse(product)
+  end
+  
   def payment
     RestClient.get("https://#{ENV['SHOPIFY_API_KEY']}:#{ENV['SHOPIFY_API_PASSWORD']}@myownbookshelf.myshopify.com/admin/api/2020-04/shopify_payments/payouts/623721858.json")
   end
