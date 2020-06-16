@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Products Details</title>
+</head>
+<body>
+		*************************************
+		<div>
+			<div>
+				<p>Product Name: <%= @product["product"]["title"]%></p>
+				<% @product["product"]["images"].each do |img| %>
+					<img src='<%=img["src"]%>'>
+				<%end%>
+				<% @product["product"]["variants"].each do |variant|%>
+					<p>Available Product Quantity: <%= variant["inventory_quantity"]%></p>
+					<p>Product Price: <%=variant["price"]%></p>
+				<%end%>
+				<p>Quantity<%=text_field_tag (:qty)%></p>
+					<%=link_to "checkout", products_checkout_path()%>
+			</div>
+		</div>
+
+</body>
+</html>
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Products Details</title>
+</head>
+<body>
+	<%@products["products"].each do |ele|%>
+		*************************************
+		<div>
+			<div>
+				<p>Product Name: <%= ele["title"]%></p>
+				<%ele["images"].each do |img|%>
+					<img src="<%=img["src"]%>">
+				<%end%>
+				<%ele["variants"].each do |variant|%>
+					<p>Product Quantity: <%= variant["inventory_quantity"]%></p>
+					<p>Product Price: <%=variant["price"]%></p>
+					<%= link_to "Buy", products_product_list_path(ele["id"]) , :class=>"btn btn-primary" %>
+				<%end%>
+			</div>
+		</div>
+	<%end%>
+
+</body>
+</html>
